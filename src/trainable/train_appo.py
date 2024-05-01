@@ -93,9 +93,16 @@ if __name__ == '__main__':
 
     }
 
+    def stopper(trial_id, result):
+        # timeout = result['time_since_restore'] > 48 * 60 * 60
+        timeout = result['time_since_restore'] > 20
+        perf = result['custom_metrics']['win_vil_mean'] > 0.85
+        return perf or timeout
+
     analysis = tune.run(
         APPOTrainer,
         local_dir=Params.RAY_DIR,
+        stop=stopper,
         config=configs,
         trial_name_creator=trial_name_creator,
         checkpoint_freq=Params.checkpoint_freq,
