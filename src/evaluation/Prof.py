@@ -29,7 +29,7 @@ class Prof:
         """
         # compute complete info for episodes
         self.episodes[episode_count] = episode
-        dump_pkl(self.episodes, Params.episode_file)
+        # dump_pkl(self.episodes, Params.episode_file)
 
     def compare_first_targets(self, episode_range: list):
 
