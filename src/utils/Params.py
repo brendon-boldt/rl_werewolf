@@ -27,7 +27,7 @@ def singleton(cls):
 
 
 #@singleton
-class Params:
+class ParamsClass:
     ##########################
     # other
     ##########################
@@ -103,22 +103,21 @@ class Params:
         for k, v in att.items():
             parser.add_argument(
                 "--" + k.lower(), type=type(v), default=v,
-
             )
 
         for k, v in vars(parser.parse_args()).items():
-            self.__setattr__(k, v)
+            setattr(self, k, v)
 
     def __init__(self):
         print("Params class initialized")
+
+        # change values based on argparse
+        self.__parse_args()
 
         if not self.resume_training:
             self.__empty_dirs([self.LOG_DIR])
 
         self.__initialize_dirs()
-
-        # change values based on argparse
-        self.__parse_args()
 
         if not self.resume_training:
             # log params to file and out
@@ -202,3 +201,5 @@ class Params:
                         print(e)
             except Exception:
                 continue
+
+Params = ParamsClass()
