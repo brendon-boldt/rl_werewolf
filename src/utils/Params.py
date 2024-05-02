@@ -109,7 +109,7 @@ class ParamsClass:
                 "--" + k.lower(), type=type(v), default=v,
             )
 
-        for k, v in vars(parser.parse_args()).items():
+        for k, v in vars(parser.parse_known_args()[0]).items():
             setattr(self, k, v)
 
     def __init__(self):
@@ -117,9 +117,6 @@ class ParamsClass:
 
         # change values based on argparse
         self.__parse_args()
-
-        if not self.resume_training:
-            self.__empty_dirs([self.LOG_DIR])
 
         self.__initialize_dirs()
 
