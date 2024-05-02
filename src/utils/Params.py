@@ -51,10 +51,14 @@ class ParamsClass:
     log_match_file = join_paths(GAME_LOG_DIR, f"{unique_id}_log.log")
     params_file = join_paths(GAME_LOG_DIR, "params.log")
 
+    checkpoint_path = ""
+
     ##########################
     # Performance stuff
     ##########################
     debug = False
+
+    corpus_generation = False
 
 
     n_cpus = multiprocessing.cpu_count() if not debug else 1
