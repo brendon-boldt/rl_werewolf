@@ -27,7 +27,7 @@ def singleton(cls):
 
 
 #@singleton
-class ParamsClass:
+class Params:
     ##########################
     # other
     ##########################
@@ -202,5 +202,3 @@ class ParamsClass:
                         print(e)
             except Exception:
                 continue
-
-Params = ParamsClass()

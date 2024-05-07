@@ -5,6 +5,9 @@ import itertools
 from policies import *
 from utils import Params
 
+# Side effects, e.g., create dirs
+_ = Params()
+
 import logging
 
 import ray
@@ -68,8 +71,7 @@ def generate_corpus(configs) -> None:
             fo.write(s)
             fo.write("\n")
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     _ = ParametricActionsModel
     ray.init(local_mode=Params.debug, logging_level=logging.DEBUG, num_gpus=1)
 
