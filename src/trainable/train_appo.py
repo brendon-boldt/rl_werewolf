@@ -42,6 +42,8 @@ def mapping_dynamic(agent_id):
 
 
 def generate_corpus(configs) -> None:
+    import tensorflow as tf
+    tf.compat.v1.disable_eager_execution()
     apt = APPOTrainer(config=configs)
     apt.restore(Params.checkpoint_path)
     worker = apt.workers.local_worker()
